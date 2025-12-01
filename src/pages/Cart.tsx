@@ -121,17 +121,19 @@ const Cart = () => {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container py-20 text-center">
+        <main className="container py-24 text-center">
           <div className="mx-auto max-w-md">
-            <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
-              <ShoppingBag className="h-10 w-10 text-muted-foreground" />
+            <div className="mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20 shadow-elevated animate-float">
+              <ShoppingBag className="h-12 w-12 text-primary" />
             </div>
-            <h1 className="mb-2 text-2xl font-bold text-foreground">Your cart is empty</h1>
-            <p className="mb-6 text-muted-foreground">
+            <h1 className="mb-3 text-3xl font-extrabold text-foreground">Your cart is empty</h1>
+            <p className="mb-8 text-lg text-muted-foreground">
               Looks like you haven't added anything yet. Let's fix that!
             </p>
             <Link to="/restaurants">
-              <Button size="lg">Browse Restaurants</Button>
+              <Button size="lg" variant="hero" className="shadow-elevated hover:shadow-glow transition-all duration-300">
+                Browse Restaurants
+              </Button>
             </Link>
           </div>
         </main>
@@ -155,8 +157,8 @@ const Cart = () => {
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <h1 className="mb-2 text-2xl font-bold text-foreground">Your Order</h1>
-            <p className="mb-6 text-muted-foreground">From {restaurantName}</p>
+            <h1 className="mb-2 text-3xl font-extrabold text-foreground">Your Order</h1>
+            <p className="mb-8 text-lg text-muted-foreground">From <span className="font-semibold text-foreground">{restaurantName}</span></p>
             
             <div className="space-y-4">
               {items.map((item) => (
@@ -167,9 +169,9 @@ const Cart = () => {
 
           {/* Order Summary */}
           <div>
-            <Card className="sticky top-24 border-0 shadow-medium">
-              <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
+            <Card className="sticky top-24 border-0 shadow-elevated border border-border/50">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl font-extrabold">Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Pickup Time */}
@@ -211,22 +213,23 @@ const Cart = () => {
                 </div>
 
                 {/* Totals */}
-                <div className="space-y-2 border-t border-border pt-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Subtotal</span>
-                    <span>${totalPrice.toFixed(2)}</span>
+                <div className="space-y-3 border-t border-border pt-5">
+                  <div className="flex justify-between text-base">
+                    <span className="text-muted-foreground font-medium">Subtotal</span>
+                    <span className="font-semibold">${totalPrice.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between font-bold text-lg">
-                    <span>Total</span>
-                    <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                  <div className="flex justify-between items-center pt-2 border-t border-border">
+                    <span className="font-extrabold text-xl">Total</span>
+                    <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">${totalPrice.toFixed(2)}</span>
                   </div>
                 </div>
 
                 <Button
                   onClick={handlePlaceOrder}
                   disabled={loading || timeSlots.length === 0}
-                  className="w-full"
+                  className="w-full shadow-elevated hover:shadow-glow transition-all duration-300"
                   size="lg"
+                  variant="hero"
                 >
                   {loading ? 'Placing Order...' : 'Place Order'}
                 </Button>

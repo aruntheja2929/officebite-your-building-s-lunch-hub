@@ -135,31 +135,33 @@ const Orders = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container py-8">
-        <h1 className="mb-2 text-2xl font-bold text-foreground">My Orders</h1>
-        <p className="mb-8 text-muted-foreground">Track and manage your orders</p>
+      <main className="container py-10">
+        <h1 className="mb-3 text-4xl font-extrabold text-foreground md:text-5xl">My Orders</h1>
+        <p className="mb-10 text-lg text-muted-foreground">Track and manage your orders</p>
 
         {orders.length === 0 ? (
-          <div className="py-20 text-center">
-            <div className="mx-auto mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
-              <Package className="h-10 w-10 text-muted-foreground" />
+          <div className="py-24 text-center">
+            <div className="mx-auto mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20 shadow-elevated animate-float">
+              <Package className="h-12 w-12 text-primary" />
             </div>
-            <h2 className="mb-2 text-xl font-bold text-foreground">No orders yet</h2>
-            <p className="mb-6 text-muted-foreground">
+            <h2 className="mb-3 text-2xl font-extrabold text-foreground">No orders yet</h2>
+            <p className="mb-8 text-lg text-muted-foreground">
               You haven't placed any orders. Ready to grab lunch?
             </p>
             <Link to="/restaurants">
-              <Button size="lg">Browse Restaurants</Button>
+              <Button size="lg" variant="hero" className="shadow-elevated hover:shadow-glow transition-all duration-300">
+                Browse Restaurants
+              </Button>
             </Link>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-5">
             {orders.map((order) => {
               const status = statusConfig[order.status] || statusConfig.pending;
               const canCancel = order.status === 'pending';
 
               return (
-                <Card key={order.id} className="border-0 shadow-soft transition-all hover:shadow-medium">
+                <Card key={order.id} className="border-0 shadow-soft transition-all duration-300 hover:shadow-elevated hover:-translate-y-1 border border-border/50">
                   <CardContent className="p-6">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="flex-1">
@@ -198,7 +200,7 @@ const Orders = () => {
                       </div>
 
                       <div className="flex flex-col items-end gap-3">
-                        <span className="text-xl font-bold text-primary">
+                        <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                           ${order.total_amount.toFixed(2)}
                         </span>
                         

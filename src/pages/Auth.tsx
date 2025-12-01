@@ -81,24 +81,28 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background gradient-hero">
-      <div className="container flex min-h-screen flex-col items-center justify-center py-8">
-        <Link to="/" className="mb-8 flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+    <div className="min-h-screen bg-background gradient-hero relative overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
+      </div>
+      <div className="container relative flex min-h-screen flex-col items-center justify-center py-8">
+        <Link to="/" className="mb-8 flex items-center gap-2 text-muted-foreground transition-all duration-200 hover:text-foreground hover:gap-3">
           <ArrowLeft className="h-4 w-4" />
           Back to home
         </Link>
         
-        <Card className="w-full max-w-md border-0 shadow-elevated">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-soft">
-              <span className="text-2xl">🍽️</span>
+        <Card className="w-full max-w-md border-0 shadow-elevated border border-border/50 backdrop-blur-glass">
+          <CardHeader className="text-center pb-6">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-elevated animate-scale-in">
+              <span className="text-3xl">🍽️</span>
             </div>
-            <CardTitle className="text-2xl">
+            <CardTitle className="text-3xl font-extrabold mb-2">
               {mode === 'signin' && 'Welcome back'}
               {mode === 'signup' && 'Create an account'}
               {mode === 'forgot' && 'Reset password'}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-base">
               {mode === 'signin' && 'Sign in to your OfficeBite account'}
               {mode === 'signup' && 'Start pre-ordering your lunch today'}
               {mode === 'forgot' && "We'll send you a reset link"}
@@ -159,7 +163,7 @@ const Auth = () => {
                 </div>
               )}
               
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full shadow-elevated hover:shadow-glow transition-all duration-300" variant="hero" size="lg" disabled={loading}>
                 {loading ? 'Please wait...' : (
                   <>
                     {mode === 'signin' && 'Sign In'}

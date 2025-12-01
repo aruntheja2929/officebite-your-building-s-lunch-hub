@@ -110,26 +110,28 @@ const Restaurant = () => {
         </Link>
 
         {/* Restaurant Header */}
-        <div className="relative mb-8 overflow-hidden rounded-2xl shadow-medium">
+        <div className="relative mb-10 overflow-hidden rounded-3xl shadow-elevated border border-border/50">
           <div className="aspect-[21/9] overflow-hidden">
             <img
               src={restaurant.image_url}
               alt={restaurant.name}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
-            <Badge className="mb-3 bg-primary/90">{restaurant.cuisine_type}</Badge>
-            <h1 className="mb-2 text-3xl font-bold">{restaurant.name}</h1>
-            <p className="mb-3 text-primary-foreground/80">{restaurant.description}</p>
-            <div className="flex items-center gap-4 text-sm text-primary-foreground/70">
-              <span className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 text-primary-foreground">
+            <Badge className="mb-4 bg-background/95 text-foreground backdrop-blur-glass border border-border/50 shadow-medium font-semibold text-sm px-3 py-1">
+              {restaurant.cuisine_type}
+            </Badge>
+            <h1 className="mb-3 text-4xl font-extrabold drop-shadow-lg md:text-5xl">{restaurant.name}</h1>
+            <p className="mb-4 text-lg text-primary-foreground/90 drop-shadow-md max-w-2xl">{restaurant.description}</p>
+            <div className="flex items-center gap-6 text-base text-primary-foreground/90 font-medium">
+              <span className="flex items-center gap-2 backdrop-blur-sm bg-background/20 px-3 py-1.5 rounded-lg">
+                <MapPin className="h-5 w-5" />
                 {restaurant.floor_number}
               </span>
-              <span className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
+              <span className="flex items-center gap-2 backdrop-blur-sm bg-background/20 px-3 py-1.5 rounded-lg">
+                <Clock className="h-5 w-5" />
                 8am - 6pm
               </span>
             </div>
@@ -137,11 +139,14 @@ const Restaurant = () => {
         </div>
 
         {/* Menu Items */}
-        <div className="space-y-8">
+        <div className="space-y-12">
           {Object.entries(categories).map(([category, items]) => (
             <section key={category}>
-              <h2 className="mb-4 text-xl font-bold text-foreground">{category}</h2>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="mb-6 flex items-center gap-3">
+                <h2 className="text-2xl font-extrabold text-foreground">{category}</h2>
+                <div className="h-1 flex-1 bg-gradient-to-r from-primary to-primary/80 rounded-full opacity-20" />
+              </div>
+              <div className="grid gap-5 md:grid-cols-2">
                 {items.map((item) => (
                   <MenuItemCard
                     key={item.id}
@@ -164,10 +169,10 @@ const Restaurant = () => {
 
       {/* Sticky Cart Bar */}
       {totalItems > 0 && restaurantId === id && (
-        <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-card p-4 shadow-elevated">
+        <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-card/95 backdrop-blur-glass p-4 shadow-elevated z-40 animate-slide-up">
           <div className="container">
             <Link to="/cart">
-              <Button className="w-full gap-2" size="lg">
+              <Button className="w-full gap-2 shadow-elevated hover:shadow-glow transition-all duration-300" size="lg" variant="hero">
                 <ShoppingBag className="h-5 w-5" />
                 View Cart ({totalItems} items) · ${totalPrice.toFixed(2)}
               </Button>

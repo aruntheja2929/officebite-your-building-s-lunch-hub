@@ -37,10 +37,10 @@ const Restaurants = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Restaurants</h1>
-          <p className="mt-2 text-muted-foreground">
+      <main className="container py-10">
+        <div className="mb-12">
+          <h1 className="text-4xl font-extrabold text-foreground mb-3 md:text-5xl">Restaurants</h1>
+          <p className="text-lg text-muted-foreground">
             Choose from these delicious options in your building
           </p>
         </div>

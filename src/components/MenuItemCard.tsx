@@ -44,27 +44,28 @@ export const MenuItemCard = ({
   };
 
   return (
-    <Card className="group overflow-hidden border-0 shadow-soft transition-all duration-300 hover:shadow-medium">
-      <div className="flex gap-4 p-4">
-        <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl">
+    <Card className="group overflow-hidden border-0 shadow-soft transition-all duration-500 hover:shadow-elevated hover:-translate-y-1 border border-border/50">
+      <div className="flex gap-5 p-5">
+        <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-2xl shadow-medium group-hover:shadow-glow transition-all duration-500">
           <img
             src={image_url}
             alt={name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
         <CardContent className="flex flex-1 flex-col justify-between p-0">
           <div>
-            <h3 className="font-semibold text-foreground">{name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{description}</p>
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">{name}</h3>
+            <p className="mt-2 text-sm text-muted-foreground line-clamp-2 leading-relaxed">{description}</p>
           </div>
-          <div className="mt-2 flex items-center justify-between">
-            <span className="text-lg font-bold text-primary">${price.toFixed(2)}</span>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">${price.toFixed(2)}</span>
             <Button
               onClick={handleAdd}
               size="sm"
               variant={justAdded ? 'accent' : 'default'}
-              className="gap-1"
+              className="gap-1.5 font-semibold shadow-soft hover:shadow-medium transition-all duration-300"
             >
               {justAdded ? (
                 <>
